@@ -88,15 +88,14 @@ export default function RegisterPage() {
 
   return (
     <main className="flex justify-center items-center bg-muted/40 px-4 min-h-screen">
-      <Card className="space-y-3 shadow-lg w-full max-w-sm">
-        <CardHeader className="text-center">
-          <CardTitle className="font-bold text-2xl">Create account</CardTitle>
-          <CardDescription>
-            Start managing your family finances today
-          </CardDescription>
-        </CardHeader>
-
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-sm">
+        <Card className="space-y-3 shadow-lg">
+          <CardHeader className="text-center">
+            <CardTitle className="font-bold text-2xl">Create account</CardTitle>
+            <CardDescription>
+              Start managing your family finances today
+            </CardDescription>
+          </CardHeader>
           <CardContent className="pb-6">
             <FieldGroup>
               {serverError && (
@@ -104,7 +103,6 @@ export default function RegisterPage() {
                   {serverError}
                 </div>
               )}
-
               <Field>
                 <FieldLabel htmlFor="name">Name</FieldLabel>
                 <Input
@@ -116,7 +114,6 @@ export default function RegisterPage() {
                 />
                 {errors.name && <FieldError>{errors.name.message}</FieldError>}
               </Field>
-
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
@@ -130,11 +127,10 @@ export default function RegisterPage() {
                   <FieldError>{errors.email.message}</FieldError>
                 ) : (
                   <FieldDescription>
-                    We’ll send a confirmation link to this email.
+                    We'll send a confirmation link to this email.
                   </FieldDescription>
                 )}
               </Field>
-
               <Field>
                 <FieldLabel htmlFor="password">Password</FieldLabel>
                 <Input
@@ -148,7 +144,6 @@ export default function RegisterPage() {
                   <FieldError>{errors.password.message}</FieldError>
                 )}
               </Field>
-
               <Field>
                 <FieldLabel htmlFor="confirmPassword">
                   Confirm password
@@ -166,17 +161,10 @@ export default function RegisterPage() {
               </Field>
             </FieldGroup>
           </CardContent>
-
           <CardFooter className="flex flex-col gap-4">
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={isSubmitting}
-              loading={isSubmitting}
-              loadingText="Creating account...">
-              Create account
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? "Creating account..." : "Create account"}
             </Button>
-
             <p className="text-muted-foreground text-sm text-center">
               Already have an account?{" "}
               <Link
@@ -186,8 +174,8 @@ export default function RegisterPage() {
               </Link>
             </p>
           </CardFooter>
-        </form>
-      </Card>
+        </Card>
+      </form>
     </main>
   );
 }

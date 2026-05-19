@@ -32,7 +32,13 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const publicRoutes = ["/", "/auth/login", "/auth/register"];
+  const publicRoutes = [
+    "/",
+    "/auth/login",
+    "/auth/register",
+    "/auth/confirm", // ← handles the confirmation link
+    "/auth/error", // ← handles confirmation failures
+  ];
 
   const isPublicRoute = publicRoutes.some(
     (route) =>
